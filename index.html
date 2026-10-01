@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061221">
+<title>Celestia: Which sky were you born under?</title>
+<meta name="description" content="Find your zodiac sign from your birthday, see its constellation and today's reading, and check how it matches any other sign. Free, and no birth year needed.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Celestia">
+<meta property="og:title" content="Celestia: Which sky were you born under?">
+<meta property="og:description" content="Find your zodiac sign, watch its stars appear, and see how it matches any other sign.">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23061221'/%3E%3Cpath d='M32 8l5 19 19 5-19 5-5 19-5-19-19-5 19-5z' fill='%23ecc97a'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400..600;1,6..72,400&family=Cormorant+Garamond:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="stars" aria-hidden="true"></canvas>
+<canvas id="fx" aria-hidden="true"></canvas>
+<header class="top">
+  <a class="brand" href="#">Celestia</a>
+  <button id="motionToggle" class="quiet" aria-pressed="false">Reduce motion</button>
+</header>
+<main>
+  <p id="fail" class="error" role="alert" hidden>Something went wrong loading this page. Check your connection and reload.</p>
+  <noscript><p class="error">Celestia needs JavaScript to find your sign. Turn it on and reload.</p></noscript>
+  <section class="hero">
+    <div class="intro">
+      <h1>Which sky were you born under?</h1>
+      <p class="lead">Put in your birthday. The wheel turns to your sign and draws its stars.</p>
+      <form id="dobForm" class="dob" novalidate>
+        <p class="flabel" id="bl">Your birthday. No year needed.</p>
+        <div class="row">
+          <select id="bm" aria-label="Month" aria-describedby="bl"></select>
+          <select id="bd" aria-label="Day"></select>
+          <button type="submit" class="cta">Find my sign</button>
+        </div>
+        <label class="remember"><input type="checkbox" id="rem"> Remember my birthday on this device</label>
+        <p id="dobError" class="error" role="alert" hidden></p>
+      </form>
+      <p id="welcome" class="welcome" hidden></p>
+    </div>
+    <div class="wheel-wrap">
+      <svg id="wheel" viewBox="0 0 400 400" role="group" aria-label="Zodiac wheel. Select a sign."></svg>
+    </div>
+  </section>
+  <section id="result" aria-live="polite" hidden></section>
+  <section class="compat" id="compat">
+    <h2>Compatibility</h2>
+    <p class="sub">Pick two signs to see how traditional astrology matches them.</p>
+    <div class="pair">
+      <label>First sign<select id="cA"></select></label>
+      <span class="amp" aria-hidden="true">+</span>
+      <label>Second sign<select id="cB"></select></label>
+    </div>
+    <div id="cOut" aria-live="polite"></div>
+  </section>
+  <section class="index"><div class="rail">
+    <h2>Explore the signs</h2>
+    <label class="sr" for="q">Search signs</label>
+    <input id="q" type="search" placeholder="Search signs" autocomplete="off">
+    <p id="none" class="error" hidden></p>
+    <div id="chips" class="chips"></div>
+  </div></section>
+  <section class="faq">
+    <h2>Questions</h2>
+    <details><summary>Is this real astrology?</summary><p>It is traditional sun-sign astrology, shared for entertainment. There is no scientific evidence that star signs predict personality or events.</p></details>
+    <details><summary>Do I need to enter my birth year?</summary><p>No. Your sun sign depends only on the month and day you were born.</p></details>
+    <details><summary>Another site shows a different sign for my birthday. Why?</summary><p>The sun moves into a new sign on a slightly different day and time each year, usually between the 20th and 23rd. If you were born on or next to a change date, a birth chart with your time and place will settle it. We use the standard dates.</p></details>
+    <details><summary>Do you save my birthday?</summary><p>Not unless you tick "Remember my birthday on this device". Then it stays in your own browser, and you can remove it with "Forget my birthday". It is never sent to us or anyone else. The calendar reminder file is also built on your device.</p></details>
+    <details><summary>How is the daily reading written?</summary><p>It is a short, general note chosen from a written set by the date. Everyone with your sign sees the same one that day. It is for fun, not advice.</p></details>
+    <details><summary>How is compatibility worked out?</summary><p>From the traditional relationship between two signs on the wheel, plus their elements and modalities. It is a way to explore, not a verdict on any relationship.</p></details>
+  </section>
+</main>
+<footer><p>Traditional astrology, shared for entertainment. It is not scientific prediction.</p></footer>
+<script>addEventListener("error",function(e){if(e.target===window||e.target.tagName==="SCRIPT"){var b=document.getElementById("fail");if(b)b.hidden=false;}},true);</script>
+<script src="profiles.js"></script>
+<script src="horoscope.js"></script>
+<script src="fx.js"></script>
+<script src="reminder.js"></script>
+<script src="script.js"></script>
+<script src="compat.js"></script>
+</body>
+</html>
