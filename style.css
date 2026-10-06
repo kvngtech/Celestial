@@ -257,3 +257,7 @@ body::before{position:absolute;right:-105px;top:90px;box-shadow:inset 16px -5px 
 .remember input{width:20px;height:20px;accent-color:var(--sun)}
 .welcome{margin-top:.8rem;max-width:44ch}
 .welcome .quiet{margin-left:.3rem}
+
+/* Footer credit */
+.credit{margin-top:.8rem;font:500 .95rem var(--display);color:var(--mute)}
+.credit span{color:var(--sun);font-weight:800;letter-spacing:.01em}
